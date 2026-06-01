@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { BASE_URL } from '../utils/apiClient';
 
-const BASE_URL = 'https://fakestoreapi.com';
+
 
 test.describe('Products API', () => {
     /**
