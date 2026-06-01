@@ -27,4 +27,28 @@ test.describe('Authentication API', () => {
         expect(body.token).toBeTruthy();
     });
 
+
+    /**
+     * Test Objective:
+     * Verify that login fails with invalid credentials
+     * and returns an unauthorized response.
+     */
+    test('Login with invalid credentials', async ({ request }) => {
+        const response = await request.post(
+            `${BASE_URL}/auth/login`,
+            {
+                data: {
+                    username: 'invalid_user',
+                    password: 'invalid_password'
+                }
+            }
+        );
+
+        expect(response.status()).toBe(401);
+
+        const body = await response.text();
+
+        expect(body).toContain('username or password is incorrect');
+    });
+
 });
