@@ -1,0 +1,9 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: qa-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: qa_testing
+    ports:
+      - "3306:3306"

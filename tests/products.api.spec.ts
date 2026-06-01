@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { BASE_URL } from '../utils/apiClient';
+import { testProduct } from '../test-data/products';
 
 
 
@@ -49,25 +50,18 @@ test.describe('Products API', () => {
         const response = await request.post(
             `${BASE_URL}/products`,
             {
-                data: {
-                    title: 'Test Product',
-                    price: 99.99,
-                    description: 'Created by Playwright',
-                    image: 'https://i.pravatar.cc',
-                    category: 'electronics'
-                }
+                data: testProduct
             }
         );
 
-    /**
-     * Successful resource creation should return HTTP 201 Created.
-     */
+
+    // Successful resource creation should return HTTP 201 Created.
     expect(response.status()).toBe(201);
 
     const product = await response.json();
 
-    expect(product.title).toBe('Test Product');
-    expect(product.price).toBe(99.99);
+    expect(product.title).toBe(testProduct.title);
+    expect(product.price).toBe(testProduct.price);
     });
 
     /**
